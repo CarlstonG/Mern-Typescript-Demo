@@ -50,55 +50,49 @@ const VideoForm = () => {
 
   return (
     <div className="row">
-      <div className="col-md-4 offset-md-4">
-        <div className="card my-auto">
-          <div className="card-body">
-            <h3>New Video</h3>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="title"
-                  placeholder="Write a Title for this video"
-                  className="form-control"
-                  autoFocus
-                  onChange={handleInputChange}
-                  value={video.title}
-                />
-              </div>
+          <div className="col-md-4 offset-md-4">
+                  <div className="card text-white bg-info mb-3">
+                      <div className="card-body">
+                          <h3>New Video</h3>
+                          <form onSubmit={handleSubmit}>
+                             <div className="form-group">
+                             <input type="text" name="title" placeholder="Write the title for this Video" className="form-control"
+                             autoFocus
+                             onChange={handleInputChange}
+                             />
+                             </div>
+                             <div className="form-group">
+                             <input type="text" name="url" placeholder="www.youtube.com" className="form-control"
+                             autoFocus
+                             onChange={handleInputChange}
+                             />
+                             </div>
+                             <div className="form-group">
+                                 <textarea name="description" rows={3} className="form-control"
+                                 placeholder="Write the Description"
+                                 autoFocus
+                                onChange={handleInputChange}
+                                 ></textarea>
+                             </div>
+                                    {
+                                        params.id ?    
+                                       ( <button className="btn btn-primary btn-xl form-control" >
+                                        Update Video!
+                                        </button> )
+                                        :
+                                       ( <button className="btn btn-primary btn-xl form-control" >
+                                        Share Video!
+                                        </button>  )                
+                                    }
 
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="url"
-                  placeholder="https://somesite.com"
-                  className="form-control"
-                  onChange={handleInputChange}
-                  value={video.url}
-                />
-              </div>
+                           
 
-              <div className="form-group">
-                <textarea
-                  name="description"
-                  rows={3}
-                  className="form-control"
-                  placeholder="Write a description"
-                  onChange={handleInputChange}
-                  value={video.description}
-                ></textarea>
-              </div>
-
-              {params.id ? (
-                <button className="btn btn-info">Update</button>
-              ) : (
-                <button className="btn btn-primary">Create</button>
-              )}
-            </form>
+                          </form>
+                      </div>
+                  </div>
+              
           </div>
-        </div>
       </div>
-    </div>
   );
 };
 

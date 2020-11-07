@@ -1,36 +1,62 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import './Navbar.css';
 
-const Navbar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <Link className="navbar-brand" to="/">
-          My Favorite Videos
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/new-video">
-                Create a New Video
-              </Link>
-            </li>
-          </ul>
+export default function Navbar() {
+    const [click, setClick] = useState(false);
+    const [button, setButton] = useState(true);
+
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
+
+    const showButton = () => {
+        if (window.innerWidth <= 960) {
+          setButton(false);
+        } else {
+          setButton(true);
+        }
+      };
+    
+      useEffect(() => {
+        showButton();
+      }, []);
+    
+      window.addEventListener('resize', showButton);
+
+    return (
+        <div>
+                <nav className="navbar">
+                    <div className="navbar-container">
+                            <Link to="/" className="navbar-logo">
+                                Carlston G.  <i className="fab fa-affiliatetheme"/>
+                            </Link>
+                            <div className="menu-icon" onClick={handleClick}>
+                            <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
+                            </div>
+                            <ul className={click ? 'nav-menu activ' : 'nav-menu'}> 
+                           
+                                <li className="nav-item">
+                                    <Link to="/VideoList" className="nav-links" onClick={closeMobileMenu}>
+                                        Memories
+                                    </Link>
+                            
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/VideoForm" className="nav-links" onClick={closeMobileMenu}>
+                                        Store Memories
+                                    </Link>
+
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                                        Contacts
+                                    </Link>
+                            
+                                </li>
+                            </ul>
+                       
+                    </div>
+                </nav>     
         </div>
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
+    )
+}
