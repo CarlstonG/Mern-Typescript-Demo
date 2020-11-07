@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Video } from "./Video";
 
-const API = process.env.REACT_APP_API;
+const API = process.env.REACT_APP_API || 'http://localhost:5000';
 
 export const getVideos = async () => {
   return await axios.get<Video[]>(`${API}/videos`);

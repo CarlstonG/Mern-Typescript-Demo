@@ -4,12 +4,11 @@ import config from "./config";
 (async () => {
   try {
     const mongooseOptions: ConnectionOptions = {
-      useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
-      authSource: "admin",
-      user: config.MONGO_USER,
-      pass: config.MONGO_PASSWORD,
+      useNewUrlParser: true,
+     /*user: config.MONGO_USER,
+      pass: config.MONG0_PASSWORD,
+       */
     };
 
     const db = await mongoose.connect(
